@@ -1,18 +1,32 @@
 'use strict'
 
-module.exports.hello = async event => {
-  return {
-    statusCode: 200,
-    body: JSON.stringify(
-      {
-        message: 'Go Serverless v1.0! Your function executed successfully!',
-        input: event
-      },
-      null,
-      2
-    )
+const uuid = require('uuid/v4')
+const AWS = require('aws-sdk')
+
+const { TABLE_NAME } = process.env
+const DB = new AWS.DynamoDB.DocumentClient()
+
+async function createDashboard (event) {
+  const id = uuid()
+  const record = {
+    id,
+    createdAt: (new Date()).toISOString(),
+    widgets: []
   }
 
-  // Use this code if you don't use the http event with the LAMBDA-PROXY integration
-  // return { message: 'Go Serverless v1.0! Your function executed successfully!', event };
+  const params = {
+    TableName: TABLE_NAME,
+    Item: record
+  }
+
+  await DB.put(params).promise()
+
+  return {
+    statusCode: 200,
+    body: JSON.stringify(params)
+  }
+}
+
+module.exports = {
+  createDashboard
 }
