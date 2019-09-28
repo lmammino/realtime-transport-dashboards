@@ -41,6 +41,12 @@ provider:
 #    - exclude-me-dir/**
 
 functions:
+  getDashboard:
+    handler: src/handler.getDashboard
+    events:
+      - http:
+          path: dashboard/{dashboard_id}
+          method: GET
   createDashboard:
     handler: src/handler.createDashboard
     events:
@@ -53,6 +59,12 @@ functions:
       - http:
           path: dashboard/{dashboard_id}/widget
           method: POST
+  deleteWidget:
+    handler: src/handler.deleteWidget
+    events:
+      - http:
+          path: dashboard/{dashboard_id}/widget/{widget_id}
+          method: DELETE
 #      - websocket: $connect
 #      - s3: ${env:BUCKET}
 #      - schedule: rate(10 minutes)
