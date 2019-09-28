@@ -7,6 +7,12 @@ Serverless APIs for AWS to build and display Irish public transportation real ti
 
 This is a sample serverless application that can be used for workshops or other educational purposes.
 
+
+The application allows you to create **dashboards**. Every dashboard can contain 0 or more **widgets**. A widget can display real time information about a specific Dublin Bus stop, a LUAS stop or a Irish Rail station.
+
+The application offers [APIs](#apis) to create, edit and visualize dashboards and widgets.
+
+
 ## Getting started
 
 Before starting make sure you have the [AWS CLI installed](https://aws.amazon.com/cli/) and properly [configured](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html).
@@ -30,11 +36,63 @@ If everything went fine you should see the URL for the deployed API endpoints.
 
 ## APIs
 
- - POST `/dashboard`: create a new dashboard
- - GET `/dashboard/{dashboard_id}`: get data for a dashboard
- - POST `/dashboard/{dashboard_id}/widget`: add a new widget
- - POST `/dashboard/{dashboard_id}/widget/{widget_id}`: edit a widget
- - DELETE `/dashboard/{dashboard_id}/widget/{widget_id}`: delete a widget
+Once you deploy the functions you will be able to access the following APIS:
+
+ - [createDashboard](#createdashboard): creates a new dashboard
+ - [updateDashboard](#updatedashboard): updates an existing dashboard
+ - [deleteDashboard](#deletedashboard): deletes an existing dashboard
+ - [getDashboard](#getdashboard): get data for a dashboard
+ - [addWidget](#addwidget): adds a new widget to an existing dashboard
+ - [updateWidget](#updatewidget): updates an existing widget
+ - [deleteWidget](#deleteWidget): deletes an existing widget from a dashboard
+
+
+### createDashboard
+
+POST `/dashboard`: creates a new dashboard
+
+
+### updateDashboard
+
+POST `/dashboard/{dashboard_id}`: updates an existing dashboard
+
+**TODO**
+
+
+## deleteDashboard
+
+DELETE `/dashboard/{dashboard_id}`: deletes an existing dashboard
+
+**TODO**
+
+
+### getDashboard
+
+GET `/dashboard/{dashboard_id}`: get data for a dashboard
+
+
+### addWidget
+
+POST `/dashboard/{dashboard_id}/widget`: adds a new widget to an existing dashboard
+
+
+### updateWidget
+
+POST `/dashboard/{dashboard_id}/widget/{widget_id}`: updates an existing widget
+
+
+### deleteWidget
+
+DELETE `/dashboard/{dashboard_id}/widget/{widget_id}`: deletes an existing widget from a dashboard
+
+
+## Cleanup
+
+If you want to remove all the resources created by this project you can simply run:
+
+```bash
+npm run cleanup
+```
 
 
 ## Contributing

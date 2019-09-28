@@ -6,7 +6,8 @@
   "scripts": {
     "test:eslint": "eslint .",
     "test": "npm run test:eslint",
-    "deploy": "serverless deploy"
+    "deploy": "serverless deploy",
+    "cleanup": "serverless remove"
   },
   "repository": {
     "type": "git",
