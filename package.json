@@ -28,6 +28,7 @@
     "serverless": "^1.53.0"
   },
   "dependencies": {
+    "public-transport-ireland": "^1.0.0",
     "uuid": "^3.3.3"
   }
 }
