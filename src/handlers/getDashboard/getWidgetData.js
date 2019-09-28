@@ -21,7 +21,7 @@ async function getWidgetData ({ type, parameters }) {
 }
 
 async function getDublinBusData (params) {
-  return dublinBus.getRealTimeInfo(params.id)
+  return dublinBus.getRealTimeInfo(params.code)
 }
 
 async function getIrishRailData (params) {

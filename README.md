@@ -59,7 +59,7 @@ POST `/dashboard/{dashboard_id}`: updates an existing dashboard
 **TODO**
 
 
-## deleteDashboard
+### deleteDashboard
 
 DELETE `/dashboard/{dashboard_id}`: deletes an existing dashboard
 
@@ -93,6 +93,15 @@ If you want to remove all the resources created by this project you can simply r
 ```bash
 npm run cleanup
 ```
+
+
+## Utilities
+
+This repository contains a number of utility scripts to get information for the supported realtime services:
+
+ - **Get all Dublin Bus stops**: `node utils/allBusStops.js`
+ - **Get all Irish Rail stations**: `node utils/allRailStations.js`
+ - **Get all Luas stops**: `node utils/allLuasStops.js`
 
 
 ## Contributing
