@@ -4,15 +4,17 @@
   "description": "Serverless APIs for AWS to build and display public transportation real time data (Serverless application example)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test:eslint": "eslint .",
+    "test": "npm run test:eslint",
+    "deploy": "serverless deploy"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lmammino/realtime-transport-dashboards.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Luciano Mammino",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/lmammino/realtime-transport-dashboards/issues"
   },
