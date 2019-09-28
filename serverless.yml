@@ -47,6 +47,12 @@ functions:
       - http:
           path: dashboard
           method: POST
+  addWidget:
+    handler: src/handler.addWidget
+    events:
+      - http:
+          path: dashboard/{dashboard_id}/widget
+          method: POST
 #      - websocket: $connect
 #      - s3: ${env:BUCKET}
 #      - schedule: rate(10 minutes)
@@ -90,16 +96,12 @@ resources:
         AttributeDefinitions:
           - AttributeName: id
             AttributeType: S
-          - AttributeName: createdAt
-            AttributeType: S
         KeySchema:
           - AttributeName: id
             KeyType: HASH
-          - AttributeName: createdAt
-            KeyType: 'RANGE'
         ProvisionedThroughput:
-          ReadCapacityUnits: 12
-          WriteCapacityUnits: 12
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
 
 #    NewResource:
 #      Type: AWS::S3::Bucket
