@@ -1,0 +1,19 @@
+trigger:
+  branches:
+    include:
+      - refs/heads/*
+      - refs/tags/*
+
+resources:
+  containers:
+  - container: node8
+    image: node:8.16-stretch-slim
+
+stages:
+  - stage: Tests
+    jobs:
+      - job: TestsJobNode8
+        container: node8
+        steps:
+          - bash: |
+              npm install && npm test
