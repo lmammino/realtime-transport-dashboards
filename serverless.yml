@@ -59,6 +59,12 @@ functions:
       - http:
           path: dashboard/{dashboard_id}/widget
           method: POST
+  updateWidget:
+    handler: src/handler.updateWidget
+    events:
+      - http:
+          path: dashboard/{dashboard_id}/widget/{widget_id}
+          method: POST
   deleteWidget:
     handler: src/handler.deleteWidget
     events:

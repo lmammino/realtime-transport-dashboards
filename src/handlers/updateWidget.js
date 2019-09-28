@@ -1,9 +1,18 @@
 'use strict'
 
 module.exports = function factory (dynamoClient, tableName) {
-  return async function deleteWidget (event) {
+  return async function addWidget (event) {
     const dashboardId = event.pathParameters.dashboard_id
     const widgetId = event.pathParameters.widget_id
+
+    const widgetConfig = event.body ? JSON.parse(event.body) : {}
+
+    const widgetRecord = {
+      id: widgetId,
+      config: widgetConfig
+    }
+
+    const updatedAt = (new Date()).toISOString()
 
     /*
      * Gets the current item and filters the list of widgets.
@@ -27,9 +36,15 @@ module.exports = function factory (dynamoClient, tableName) {
       }
     }
 
-    const newWidgets = dashboard.widgets.filter((widget) => widget.id !== widgetId)
+    const widgetToEdit = dashboard.widgets.find((widget) => widget.id === widgetId)
+    if (!widgetToEdit) {
+      return {
+        statusCode: 404,
+        body: JSON.stringify({ error: 'Widget not found' })
+      }
+    }
 
-    const updatedAt = (new Date()).toISOString()
+    widgetToEdit.config = widgetConfig // override with new config
 
     const updateQuery = {
       TableName: tableName,
@@ -40,7 +55,7 @@ module.exports = function factory (dynamoClient, tableName) {
         '#updatedAt': 'updatedAt'
       },
       ExpressionAttributeValues: {
-        ':widgets': newWidgets,
+        ':widgets': dashboard.widgets,
         ':updatedAt': updatedAt
       }
     }
@@ -49,7 +64,7 @@ module.exports = function factory (dynamoClient, tableName) {
 
     return {
       statusCode: 200,
-      body: ''
+      body: JSON.stringify(widgetRecord)
     }
   }
 }
