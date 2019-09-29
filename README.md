@@ -38,13 +38,13 @@ If everything went fine you should see the URL for the deployed API endpoints.
 
 Once you deploy the functions you will be able to access the following APIS:
 
- - [createDashboard](#createdashboard): creates a new dashboard
- - [updateDashboard](#updatedashboard): updates an existing dashboard
- - [deleteDashboard](#deletedashboard): deletes an existing dashboard
- - [getDashboard](#getdashboard): get data for a dashboard
- - [addWidget](#addwidget): adds a new widget to an existing dashboard
- - [updateWidget](#updatewidget): updates an existing widget
- - [deleteWidget](#deleteWidget): deletes an existing widget from a dashboard
+ - [createDashboard](#-createdashboard): creates a new dashboard
+ - [updateDashboard](#-updatedashboard): updates an existing dashboard
+ - [deleteDashboard](#-deletedashboard): deletes an existing dashboard
+ - [getDashboard](#-getdashboard): get data for a dashboard
+ - [addWidget](#-addwidget): adds a new widget to an existing dashboard
+ - [updateWidget](#-updatewidget): updates an existing widget
+ - [deleteWidget](#-deleteWidget): deletes an existing widget from a dashboard
 
 To run the examples, export your API endpoint prefix as `PREFIX`, for instance:
 
@@ -55,7 +55,7 @@ PREFIX="https://<api_gate_way_id>.execute-api.eu-west-1.amazonaws.com/prod"
 Make sure to replace `<api_gate_way_id>` with you actual deployment id.
 
 
-### createDashboard
+### ⚡️createDashboard
 
 Creates a new dashboard.
 
@@ -84,40 +84,46 @@ curl -XPOST -H "Content-Type: application/json" -d '{"name":"my-dashboard"}' ${P
 Example Output:
 
 ```json
-{"id":"3450345a-684d-4456-bc68-0503d12009c2","name":"my-dashboard","createdAt":"2019-09-29T09:06:17.698Z","updatedAt":"2019-09-29T09:06:17.698Z","widgets":[]}
+{
+  "id":"3450345a-684d-4456-bc68-0503d12009c2",
+  "name":"my-dashboard",
+  "createdAt":"2019-09-29T09:06:17.698Z",
+  "updatedAt":"2019-09-29T09:06:17.698Z",
+  "widgets":[]
+}
 ```
 
 
-### updateDashboard
+### ⚡️updateDashboard
 
 POST `/dashboard/{dashboard_id}`: updates an existing dashboard
 
 **TODO**
 
 
-### deleteDashboard
+### ⚡️deleteDashboard
 
 DELETE `/dashboard/{dashboard_id}`: deletes an existing dashboard
 
 **TODO**
 
 
-### getDashboard
+### ⚡️getDashboard
 
 GET `/dashboard/{dashboard_id}`: get data for a dashboard
 
 
-### addWidget
+### ⚡️addWidget
 
 POST `/dashboard/{dashboard_id}/widget`: adds a new widget to an existing dashboard
 
 
-### updateWidget
+### ⚡️updateWidget
 
 POST `/dashboard/{dashboard_id}/widget/{widget_id}`: updates an existing widget
 
 
-### deleteWidget
+### ⚡️deleteWidget
 
 DELETE `/dashboard/{dashboard_id}/widget/{widget_id}`: deletes an existing widget from a dashboard
 
