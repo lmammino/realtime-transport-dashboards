@@ -38,12 +38,12 @@ If everything went fine you should see the URL for the deployed API endpoints.
 
 Once you deploy the functions you will be able to access the following APIS:
 
- - [createDashboard](#️createdashboard): creates a new dashboard
- - [updateDashboard](#updatedashboard): updates an existing dashboard
- - [deleteDashboard](#deletedashboard): deletes an existing dashboard
- - [getDashboard](#getdashboard): get data for a dashboard
- - [addWidget](#addwidget): adds a new widget to an existing dashboard
- - [updateWidget](#updatewidget): updates an existing widget
+ - [createDashboard](#createDashboard): creates a new dashboard
+ - [updateDashboard](#updateDashboard): updates an existing dashboard
+ - [deleteDashboard](#deleteDashboard): deletes an existing dashboard
+ - [getDashboard](#getDashboard): get data for a dashboard
+ - [addWidget](#addWidget): adds a new widget to an existing dashboard
+ - [updateWidget](#updateWidget): updates an existing widget
  - [deleteWidget](#deleteWidget): deletes an existing widget from a dashboard
 
 To run the examples, export your API endpoint prefix as `PREFIX`, for instance:
