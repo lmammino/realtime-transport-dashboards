@@ -31,18 +31,24 @@ provider:
         - "Fn::GetAtt": [ RTTDashboardTable, Arn ]
 
 functions:
-  getDashboard:
-    handler: src/handler.getDashboard
-    events:
-      - http:
-          path: dashboard/{dashboard_id}
-          method: GET
   createDashboard:
     handler: src/handler.createDashboard
     events:
       - http:
           path: dashboard
           method: POST
+  updateDashboard:
+    handler: src/handler.updateDashboard
+    events:
+      - http:
+          path: dashboard/{dashboard_id}
+          method: POST
+  getDashboard:
+    handler: src/handler.getDashboard
+    events:
+      - http:
+          path: dashboard/{dashboard_id}
+          method: GET
   addWidget:
     handler: src/handler.addWidget
     events:

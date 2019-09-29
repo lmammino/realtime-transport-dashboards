@@ -101,9 +101,41 @@ Example Output:
 
 ### ⚡️ updateDashboard
 
-POST `/dashboard/{dashboard_id}`: updates an existing dashboard
+Updates an existing dashboard. It basically allows you to change a dashboard name.
 
-**TODO**
+
+#### Endpoint
+
+```
+POST `/dashboard/{dashboard_id}`
+```
+
+
+#### Payload
+
+```json
+{
+  "name": "<string>"
+}
+```
+
+#### Example
+
+```bash
+curl -XPOST -H "Content-Type: application/json" -d '{"name":"new-name"}' ${PREFIX}/dashboard/3450345a-684d-4456-bc68-0503d12009c2
+```
+
+Example Output:
+
+```json
+{
+  "createdAt":"2019-09-29T09:06:17.698Z",
+  "widgets":[],
+  "id":"3450345a-684d-4456-bc68-0503d12009c2",
+  "name":"new-name",
+  "updatedAt":"2019-09-29T10:05:33.984Z"
+}
+```
 
 
 <a id="deleteDashboard"></a>

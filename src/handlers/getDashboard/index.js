@@ -13,6 +13,13 @@ module.exports = function factory (dynamoClient, tableName) {
       }
     }).promise()
 
+    if (!dashboard) {
+      return {
+        statusCode: 404,
+        body: JSON.stringify({ error: 'Dashboard not found' })
+      }
+    }
+
     const expandedWidget = await Promise.all(
       dashboard.widgets.map(async (widget) => {
         const realtimeInfo = await getWidgetData(widget.config)

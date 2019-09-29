@@ -9,7 +9,7 @@ module.exports = function factory (dynamoClient, tableName) {
     const creationTime = (new Date()).toISOString()
     const record = {
       id: dashboardId,
-      name: dashboardConfig.name ? dashboardConfig.name : '',
+      name: dashboardConfig.name ? dashboardConfig.name : 'unnamed-dashboard',
       createdAt: creationTime,
       updatedAt: creationTime,
       widgets: []
