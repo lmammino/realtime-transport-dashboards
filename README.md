@@ -12,7 +12,7 @@ The application allows you to create **dashboards**. Every dashboard can contain
 
 An example of a dashboard in terms of data structure:
 
-![Example of dashboard](./images/dashboard-example.png)
+![Example of dashboard](./images/dashboard-example-small.png)
 
 
 The application offers [APIs](#apis) to create, edit and visualize dashboards and widgets.
@@ -46,7 +46,7 @@ Once you deploy the functions you will be able to access the following APIS:
  - [createDashboard](#createDashboard): creates a new dashboard
  - [updateDashboard](#updateDashboard): updates an existing dashboard
  - [deleteDashboard](#deleteDashboard): deletes an existing dashboard
- - [getDashboard](#getDashboard): get data for a dashboard
+ - [getDashboard](#getDashboard): get data for a dashboard and real time information for every widget
  - [addWidget](#addWidget): adds a new widget to an existing dashboard
  - [updateWidget](#updateWidget): updates an existing widget
  - [deleteWidget](#deleteWidget): deletes an existing widget from a dashboard
@@ -85,7 +85,7 @@ POST `/dashboard`
 #### Example
 
 ```bash
-curl -XPOST -i -H "Content-Type: application/json" -d '{"name":"my-dashboard"}' ${PREFIX}/dashboard
+curl -XPOST -i -H "Content-Type: application/json" -d '{"name":"my-dashboard"}' "${PREFIX}/dashboard"
 ```
 
 Example Output:
@@ -130,7 +130,7 @@ POST `/dashboard/{dashboard_id}`
 #### Example
 
 ```bash
-curl -XPOST -i -H "Content-Type: application/json" -d '{"name":"new-name"}' ${PREFIX}/dashboard/3450345a-684d-4456-bc68-0503d12009c2
+curl -XPOST -i -H "Content-Type: application/json" -d '{"name":"new-name"}' "${PREFIX}/dashboard/3450345a-684d-4456-bc68-0503d12009c2"
 ```
 
 Example Output:
@@ -168,7 +168,7 @@ DELETE `/dashboard/{dashboard_id}`
 #### Example
 
 ```bash
-curl -XDELETE -i -H "Content-Type: application/json" ${PREFIX}/dashboard/3450345a-684d-4456-bc68-0503d12009c2
+curl -XDELETE -i "${PREFIX}/dashboard/3450345a-684d-4456-bc68-0503d12009c2"
 ```
 
 Example Output:
@@ -187,7 +187,59 @@ content-length: 0
 
 ### ⚡️ getDashboard
 
-GET `/dashboard/{dashboard_id}`: get data for a dashboard
+Get data for a dashboard and real time information for every widget
+
+
+#### Endpoint
+
+```
+GET `/dashboard/{dashboard_id}`
+```
+
+
+#### Example
+
+```bash
+curl -XGET -i "${PREFIX}/dashboard/3450345a-684d-4456-bc68-0503d12009c2"
+```
+
+Example Output:
+
+```plain
+HTTP/2 200
+content-type: application/json
+content-length: 401
+
+{
+  "createdAt":"2019-09-28T14:12:03.196Z",
+  "widgets":
+  [
+    {
+      "config":{
+        "type":"luas",
+        "parameters":{
+          "code":"STI",
+          "direction":"Inbound"
+        }
+      },
+      "id":"6cacba61-c862-4f1e-9ca4-e5dc8f67258e",
+      "name":"Stillorgan LUAS inbound",
+      "realtimeInfo":
+      [
+        {
+          "direction":"Inbound",
+          "destination":"Broombridge",
+          "arrivingInMinutes":9,
+          "expectedArrivalTime":"2019-09-29T11:59:39.000+01:00"
+        }
+      ]
+    }
+  ],
+  "id":"3450345a-684d-4456-bc68-0503d12009c2",
+  "name":"new-name"
+  "updatedAt":"2019-09-28T16:43:05.570Z"
+}
+```
 
 
 <a id="addWidget"></a>
