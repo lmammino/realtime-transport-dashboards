@@ -3,7 +3,7 @@
 [![Build Status](https://dev.azure.com/loige/loige/_apis/build/status/lmammino.realtime-transport-dashboards?branchName=master)](https://dev.azure.com/loige/loige/_build/latest?definitionId=3&branchName=master)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-Serverless APIs for AWS to build and display Irish public transportation real time data.
+Serverless APIs for AWS to build and display Irish public transports real time data.
 
 This is a sample serverless application that can be used for workshops or other educational purposes.
 
