@@ -55,7 +55,7 @@ PREFIX="https://<api_gate_way_id>.execute-api.eu-west-1.amazonaws.com/prod"
 Make sure to replace `<api_gate_way_id>` with you actual deployment id.
 
 
-### ⚡️createDashboard
+### ⚡️ createDashboard
 
 Creates a new dashboard.
 
@@ -94,36 +94,36 @@ Example Output:
 ```
 
 
-### ⚡️updateDashboard
+### ⚡️ updateDashboard
 
 POST `/dashboard/{dashboard_id}`: updates an existing dashboard
 
 **TODO**
 
 
-### ⚡️deleteDashboard
+### ⚡️ deleteDashboard
 
 DELETE `/dashboard/{dashboard_id}`: deletes an existing dashboard
 
 **TODO**
 
 
-### ⚡️getDashboard
+### ⚡️ getDashboard
 
 GET `/dashboard/{dashboard_id}`: get data for a dashboard
 
 
-### ⚡️addWidget
+### ⚡️ addWidget
 
 POST `/dashboard/{dashboard_id}/widget`: adds a new widget to an existing dashboard
 
 
-### ⚡️updateWidget
+### ⚡️ updateWidget
 
 POST `/dashboard/{dashboard_id}/widget/{widget_id}`: updates an existing widget
 
 
-### ⚡️deleteWidget
+### ⚡️ deleteWidget
 
 DELETE `/dashboard/{dashboard_id}/widget/{widget_id}`: deletes an existing widget from a dashboard
 
