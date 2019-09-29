@@ -33,14 +33,15 @@ module.exports = function factory (dynamoClient, tableName) {
       ExpressionAttributeValues: {
         ':name': name,
         ':updatedAt': updatedAt
-      }
+      },
+      ReturnValues: 'ALL_NEW'
     }
 
-    await dynamoClient.update(updateQuery).promise()
+    const resp = await dynamoClient.update(updateQuery).promise()
 
     return {
       statusCode: 200,
-      body: JSON.stringify(Object.assign({}, dashboard, { updatedAt, name }))
+      body: JSON.stringify(resp.Attributes)
     }
   }
 }

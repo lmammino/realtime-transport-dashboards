@@ -95,7 +95,7 @@ HTTP/2 200
 content-type: application/json
 
 {
-  "id":"3450345a-684d-4456-bc68-0503d12009c2",
+  "id":"d733b0b2-f429-4bdf-82ab-c9fc3b3190d7",
   "name":"my-dashboard",
   "createdAt":"2019-09-29T09:06:17.698Z",
   "updatedAt":"2019-09-29T09:06:17.698Z",
@@ -130,7 +130,7 @@ POST `/dashboard/{dashboard_id}`
 #### Example
 
 ```bash
-curl -XPOST -i -H "Content-Type: application/json" -d '{"name":"new-name"}' "${PREFIX}/dashboard/3450345a-684d-4456-bc68-0503d12009c2"
+curl -XPOST -i -H "Content-Type: application/json" -d '{"name":"new-name"}' "${PREFIX}/dashboard/d733b0b2-f429-4bdf-82ab-c9fc3b3190d7"
 ```
 
 Example Output:
@@ -141,11 +141,11 @@ content-type: application/json
 content-length: 154
 
 {
-  "createdAt":"2019-09-29T09:06:17.698Z",
+  "createdAt":"2019-09-29T13:14:47.299Z",
   "widgets":[],
-  "id":"3450345a-684d-4456-bc68-0503d12009c2",
+  "id":"d733b0b2-f429-4bdf-82ab-c9fc3b3190d7",
   "name":"new-name",
-  "updatedAt":"2019-09-29T10:05:33.984Z"
+  "updatedAt":"2019-09-29T13:15:37.134Z"
 }
 ```
 
@@ -168,7 +168,7 @@ DELETE `/dashboard/{dashboard_id}`
 #### Example
 
 ```bash
-curl -XDELETE -i "${PREFIX}/dashboard/3450345a-684d-4456-bc68-0503d12009c2"
+curl -XDELETE -i "${PREFIX}/dashboard/d733b0b2-f429-4bdf-82ab-c9fc3b3190d7"
 ```
 
 Example Output:
@@ -200,7 +200,7 @@ GET `/dashboard/{dashboard_id}`
 #### Example
 
 ```bash
-curl -XGET -i "${PREFIX}/dashboard/3450345a-684d-4456-bc68-0503d12009c2"
+curl -XGET -i "${PREFIX}/dashboard/d733b0b2-f429-4bdf-82ab-c9fc3b3190d7"
 ```
 
 Example Output:
@@ -235,7 +235,7 @@ content-length: 401
       ]
     }
   ],
-  "id":"3450345a-684d-4456-bc68-0503d12009c2",
+  "id":"d733b0b2-f429-4bdf-82ab-c9fc3b3190d7",
   "name":"new-name"
   "updatedAt":"2019-09-28T16:43:05.570Z"
 }
@@ -277,7 +277,7 @@ POST `/dashboard/{dashboard_id}/widget`
 Adds a widget to monitor the Luas Dominick stop Inbound:
 
 ```bash
-curl -XPOST -i -d '{"name": "Luas Dominick Inbound", "config": {"type": "luas", "parameters": {"code": "DOM", "direction": "Inbound"}}}' "${PREFIX}/dashboard/3450345a-684d-4456-bc68-0503d12009c2/widget"
+curl -XPOST -i -d '{"name": "Luas Dominick Inbound", "config": {"type": "luas", "parameters": {"code": "DOM", "direction": "Inbound"}}}' "${PREFIX}/dashboard/d733b0b2-f429-4bdf-82ab-c9fc3b3190d7/widget"
 ```
 
 Example Output:
@@ -296,7 +296,7 @@ content-length: 151
       "direction":"Inbound"
     }
   },
-  "id":"94abee2e-d90d-4edb-adde-7a90cd7e2f79"
+  "id":"59b8a71b-d8c6-4569-9ec8-69c5ff0c7521"
 }
 ```
 
@@ -306,7 +306,67 @@ content-length: 151
 
 ### ⚡️ updateWidget
 
-POST `/dashboard/{dashboard_id}/widget/{widget_id}`: updates an existing widget
+Updates an existing widget
+
+
+#### Endpoint
+
+```
+POST `/dashboard/{dashboard_id}/widget/{widget_id}`
+```
+
+
+#### Payload
+
+```json
+{
+  "name": "<string>",
+  "config": {
+    "type": "irishRail | dublinBus | luas",
+    "parameters": {
+      "code": "<string>",
+      "direction": "<string> (optional - only for irishRail and luas)"
+    }
+  }
+}
+```
+
+
+#### Example
+
+Changes the previous widget direction from Outbound to Inbound:
+
+```bash
+curl -XPOST -i -d '{"name": "Luas Dominick Inbound", "config": {"type": "luas", "parameters": {"code": "DOM", "direction": "Outbound"}}}' "${PREFIX}/dashboard/d733b0b2-f429-4bdf-82ab-c9fc3b3190d7/widget/59b8a71b-d8c6-4569-9ec8-69c5ff0c7521"
+```
+
+Example Output:
+
+```plain
+HTTP/2 200
+content-type: application/json
+content-length: 151
+
+{
+  "createdAt":"2019-09-29T13:14:47.299Z",
+  "widgets":[
+    {
+      "name":"Luas Dominick Inbound",
+      "config":{
+        "type":"luas",
+        "parameters":{
+          "code":"DOM",
+          "direction":"Outbound"
+        }
+      },
+      "id":"59b8a71b-d8c6-4569-9ec8-69c5ff0c7521"
+    }
+  ],
+  "id":"d733b0b2-f429-4bdf-82ab-c9fc3b3190d7",
+  "name":"new-name",
+  "updatedAt":"2019-09-29T13:39:10.719Z"
+}
+```
 
 
 <a id="deleteWidget"></a>
@@ -314,7 +374,31 @@ POST `/dashboard/{dashboard_id}/widget/{widget_id}`: updates an existing widget
 
 ### ⚡️ deleteWidget
 
-DELETE `/dashboard/{dashboard_id}/widget/{widget_id}`: deletes an existing widget from a dashboard
+Deletes an existing widget from a dashboard
+
+
+#### Endpoint
+
+```
+DELETE `/dashboard/{dashboard_id}/widget/{widget_id}`
+```
+
+
+#### Example
+
+```bash
+curl -XDELETE -i "${PREFIX}/dashboard/d733b0b2-f429-4bdf-82ab-c9fc3b3190d7/widget/59b8a71b-d8c6-4569-9ec8-69c5ff0c7521"
+```
+
+Example Output:
+
+```plain
+HTTP/2 200
+content-type: text/plain
+content-length: 0
+
+
+```
 
 
 ## AWS Cleanup

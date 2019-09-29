@@ -7,11 +7,6 @@ module.exports = function factory (dynamoClient, tableName) {
 
     const widgetConfig = event.body ? JSON.parse(event.body) : {}
 
-    const widgetRecord = {
-      id: widgetId,
-      config: widgetConfig
-    }
-
     const updatedAt = (new Date()).toISOString()
 
     /*
@@ -44,7 +39,7 @@ module.exports = function factory (dynamoClient, tableName) {
       }
     }
 
-    widgetToEdit.config = widgetConfig // override with new config
+    Object.assign(widgetToEdit, widgetConfig, { id: widgetId }) // override with new config
 
     const updateQuery = {
       TableName: tableName,
@@ -57,14 +52,15 @@ module.exports = function factory (dynamoClient, tableName) {
       ExpressionAttributeValues: {
         ':widgets': dashboard.widgets,
         ':updatedAt': updatedAt
-      }
+      },
+      ReturnValues: 'ALL_NEW'
     }
 
-    await dynamoClient.update(updateQuery).promise()
+    const resp = await dynamoClient.update(updateQuery).promise()
 
     return {
       statusCode: 200,
-      body: JSON.stringify(widgetRecord)
+      body: JSON.stringify(resp.Attributes)
     }
   }
 }
