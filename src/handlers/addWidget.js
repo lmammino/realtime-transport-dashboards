@@ -5,13 +5,23 @@ const uuid = require('uuid/v4')
 module.exports = function factory (dynamoClient, tableName) {
   return async function addWidget (event) {
     const dashboardId = event.pathParameters.dashboard_id
-    const widgetConfig = event.body ? JSON.parse(event.body) : {}
-    const widgetId = uuid()
+    const { Item: dashboard } = await dynamoClient.get({
+      TableName: tableName,
+      Key: {
+        id: dashboardId
+      }
+    }).promise()
 
-    const widgetRecord = {
-      id: widgetId,
-      config: widgetConfig
+    if (!dashboard) {
+      return {
+        statusCode: 404,
+        body: JSON.stringify({ error: 'Dashboard not found' })
+      }
     }
+
+    const widgetRecord = event.body ? JSON.parse(event.body) : {}
+    widgetRecord.id = uuid()
+    widgetRecord.name = widgetRecord.name ? widgetRecord.name : 'unnamed-widget'
 
     const updatedAt = (new Date()).toISOString()
 

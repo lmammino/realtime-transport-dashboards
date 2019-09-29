@@ -12,7 +12,7 @@ The application allows you to create **dashboards**. Every dashboard can contain
 
 An example of a dashboard in terms of data structure:
 
-![Example of dashboard](./images/dashboard-example-small.png)
+[![Example of dashboard](./images/dashboard-example-small.png)](./images/dashboard-example.png)
 
 
 The application offers [APIs](#apis) to create, edit and visualize dashboards and widgets.
@@ -247,7 +247,58 @@ content-length: 401
 
 ### ⚡️ addWidget
 
-POST `/dashboard/{dashboard_id}/widget`: adds a new widget to an existing dashboard
+Adds a new widget to an existing dashboard
+
+
+#### Endpoint
+
+```
+POST `/dashboard/{dashboard_id}/widget`
+```
+
+#### Payload
+
+```json
+{
+  "name": "<string>",
+  "config": {
+    "type": "irishRail | dublinBus | luas",
+    "parameters": {
+      "code": "<string>",
+      "direction": "<string> (optional - only for irishRail and luas)"
+    }
+  }
+}
+```
+
+
+#### Example
+
+Adds a widget to monitor the Luas Dominick stop Inbound:
+
+```bash
+curl -XPOST -i -d '{"name": "Luas Dominick Inbound", "config": {"type": "luas", "parameters": {"code": "DOM", "direction": "Inbound"}}}' "${PREFIX}/dashboard/3450345a-684d-4456-bc68-0503d12009c2/widget"
+```
+
+Example Output:
+
+```plain
+HTTP/2 200
+content-type: application/json
+content-length: 151
+
+{
+  "name":"Luas Dominick Inbound",
+  "config":{
+    "type":"luas",
+    "parameters":{
+      "code":"DOM",
+      "direction":"Inbound"
+    }
+  },
+  "id":"94abee2e-d90d-4edb-adde-7a90cd7e2f79"
+}
+```
 
 
 <a id="updateWidget"></a>
@@ -266,9 +317,9 @@ POST `/dashboard/{dashboard_id}/widget/{widget_id}`: updates an existing widget
 DELETE `/dashboard/{dashboard_id}/widget/{widget_id}`: deletes an existing widget from a dashboard
 
 
-## Cleanup
+## AWS Cleanup
 
-If you want to remove all the resources created by this project you can simply run:
+If you want to remove all the resources created by this project from your AWS account you can simply run:
 
 ```bash
 npm run cleanup

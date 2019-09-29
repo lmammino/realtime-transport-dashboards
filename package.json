@@ -22,7 +22,7 @@
   "homepage": "https://github.com/lmammino/realtime-transport-dashboards#readme",
   "devDependencies": {
     "aws-sdk": "^2.538.0",
-    "eslint": "^6.4.0",
+    "eslint": "^6.5.0",
     "eslint-config-standard": "^14.1.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-node": "^10.0.0",
@@ -31,7 +31,7 @@
     "serverless": "^1.53.0"
   },
   "dependencies": {
-    "public-transport-ireland": "^1.2.0",
+    "public-transport-ireland": "^1.3.0",
     "uuid": "^3.3.3"
   }
 }
