@@ -4,10 +4,12 @@ const uuid = require('uuid/v4')
 
 module.exports = function factory (dynamoClient, tableName) {
   return async function createDashboard (event) {
+    const dashboardConfig = event.body ? JSON.parse(event.body) : {}
     const dashboardId = uuid()
     const creationTime = (new Date()).toISOString()
     const record = {
       id: dashboardId,
+      name: dashboardConfig.name ? dashboardConfig.name : '',
       createdAt: creationTime,
       updatedAt: creationTime,
       widgets: []
@@ -22,7 +24,7 @@ module.exports = function factory (dynamoClient, tableName) {
 
     return {
       statusCode: 200,
-      body: JSON.stringify(params)
+      body: JSON.stringify(record)
     }
   }
 }
