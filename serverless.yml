@@ -43,6 +43,12 @@ functions:
       - http:
           path: dashboard/{dashboard_id}
           method: POST
+  deleteDashboard:
+    handler: src/handler.deleteDashboard
+    events:
+      - http:
+          path: dashboard/{dashboard_id}
+          method: DELETE
   getDashboard:
     handler: src/handler.getDashboard
     events:

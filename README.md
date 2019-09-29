@@ -10,6 +10,11 @@ This is a sample serverless application that can be used for workshops or other 
 
 The application allows you to create **dashboards**. Every dashboard can contain 0 or more **widgets**. A widget can display real time information about a specific Dublin Bus stop, a LUAS stop or a Irish Rail station.
 
+An example of a dashboard in terms of data structure:
+
+![Example of dashboard](./images/dashboard-example.png)
+
+
 The application offers [APIs](#apis) to create, edit and visualize dashboards and widgets.
 
 
@@ -80,12 +85,15 @@ POST `/dashboard`
 #### Example
 
 ```bash
-curl -XPOST -H "Content-Type: application/json" -d '{"name":"my-dashboard"}' ${PREFIX}/dashboard
+curl -XPOST -i -H "Content-Type: application/json" -d '{"name":"my-dashboard"}' ${PREFIX}/dashboard
 ```
 
 Example Output:
 
-```json
+```plain
+HTTP/2 200
+content-type: application/json
+
 {
   "id":"3450345a-684d-4456-bc68-0503d12009c2",
   "name":"my-dashboard",
@@ -122,12 +130,16 @@ POST `/dashboard/{dashboard_id}`
 #### Example
 
 ```bash
-curl -XPOST -H "Content-Type: application/json" -d '{"name":"new-name"}' ${PREFIX}/dashboard/3450345a-684d-4456-bc68-0503d12009c2
+curl -XPOST -i -H "Content-Type: application/json" -d '{"name":"new-name"}' ${PREFIX}/dashboard/3450345a-684d-4456-bc68-0503d12009c2
 ```
 
 Example Output:
 
-```json
+```plain
+HTTP/2 200
+content-type: application/json
+content-length: 154
+
 {
   "createdAt":"2019-09-29T09:06:17.698Z",
   "widgets":[],
@@ -143,9 +155,31 @@ Example Output:
 
 ### ⚡️ deleteDashboard
 
-DELETE `/dashboard/{dashboard_id}`: deletes an existing dashboard
+Deletes an existing dashboard
 
-**TODO**
+
+#### Endpoint
+
+```
+DELETE `/dashboard/{dashboard_id}`
+```
+
+
+#### Example
+
+```bash
+curl -XDELETE -i -H "Content-Type: application/json" ${PREFIX}/dashboard/3450345a-684d-4456-bc68-0503d12009c2
+```
+
+Example Output:
+
+```plain
+HTTP/2 200
+content-type: application/json
+content-length: 0
+
+
+```
 
 
 <a id="getDashboard"></a>

@@ -49,6 +49,9 @@ module.exports = function factory (dynamoClient, tableName) {
 
     return {
       statusCode: 200,
+      headers: {
+        'content-type': 'text/plain'
+      },
       body: ''
     }
   }
