@@ -38,13 +38,13 @@ If everything went fine you should see the URL for the deployed API endpoints.
 
 Once you deploy the functions you will be able to access the following APIS:
 
- - [createDashboard](#-createdashboard): creates a new dashboard
- - [updateDashboard](#-updatedashboard): updates an existing dashboard
- - [deleteDashboard](#-deletedashboard): deletes an existing dashboard
- - [getDashboard](#-getdashboard): get data for a dashboard
- - [addWidget](#-addwidget): adds a new widget to an existing dashboard
- - [updateWidget](#-updatewidget): updates an existing widget
- - [deleteWidget](#-deleteWidget): deletes an existing widget from a dashboard
+ - [createDashboard](#️createdashboard): creates a new dashboard
+ - [updateDashboard](#updatedashboard): updates an existing dashboard
+ - [deleteDashboard](#deletedashboard): deletes an existing dashboard
+ - [getDashboard](#getdashboard): get data for a dashboard
+ - [addWidget](#addwidget): adds a new widget to an existing dashboard
+ - [updateWidget](#updatewidget): updates an existing widget
+ - [deleteWidget](#deleteWidget): deletes an existing widget from a dashboard
 
 To run the examples, export your API endpoint prefix as `PREFIX`, for instance:
 
@@ -54,6 +54,8 @@ PREFIX="https://<api_gate_way_id>.execute-api.eu-west-1.amazonaws.com/prod"
 
 Make sure to replace `<api_gate_way_id>` with you actual deployment id.
 
+<a id="createDashboard"></a>
+---
 
 ### ⚡️ createDashboard
 
@@ -94,12 +96,18 @@ Example Output:
 ```
 
 
+<a id="updateDashboard"></a>
+---
+
 ### ⚡️ updateDashboard
 
 POST `/dashboard/{dashboard_id}`: updates an existing dashboard
 
 **TODO**
 
+
+<a id="deleteDashboard"></a>
+---
 
 ### ⚡️ deleteDashboard
 
@@ -108,20 +116,32 @@ DELETE `/dashboard/{dashboard_id}`: deletes an existing dashboard
 **TODO**
 
 
+<a id="getDashboard"></a>
+---
+
 ### ⚡️ getDashboard
 
 GET `/dashboard/{dashboard_id}`: get data for a dashboard
 
+
+<a id="addWidget"></a>
+---
 
 ### ⚡️ addWidget
 
 POST `/dashboard/{dashboard_id}/widget`: adds a new widget to an existing dashboard
 
 
+<a id="updateWidget"></a>
+---
+
 ### ⚡️ updateWidget
 
 POST `/dashboard/{dashboard_id}/widget/{widget_id}`: updates an existing widget
 
+
+<a id="deleteWidget"></a>
+---
 
 ### ⚡️ deleteWidget
 
