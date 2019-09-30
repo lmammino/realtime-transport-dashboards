@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/lmammino/realtime-transport-dashboards#readme",
   "devDependencies": {
-    "aws-sdk": "^2.538.0",
+    "aws-sdk": "^2.539.0",
     "eslint": "^6.5.0",
     "eslint-config-standard": "^14.1.0",
     "eslint-plugin-import": "^2.18.2",
@@ -36,7 +36,7 @@
     "@middy/http-error-handler": "^1.0.0-alpha.43",
     "@middy/http-json-body-parser": "^1.0.0-alpha.43",
     "@middy/validator": "^1.0.0-alpha.43",
-    "public-transport-ireland": "^1.3.0",
+    "public-transport-ireland": "^1.4.0",
     "uuid": "^3.3.3"
   }
 }

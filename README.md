@@ -236,7 +236,7 @@ content-length: 401
     }
   ],
   "id":"d733b0b2-f429-4bdf-82ab-c9fc3b3190d7",
-  "name":"new-name"
+  "name":"new-name",
   "updatedAt":"2019-09-28T16:43:05.570Z"
 }
 ```
@@ -277,7 +277,7 @@ POST `/dashboard/{dashboard_id}/widget`
 Adds a widget to monitor the Luas Dominick stop Inbound:
 
 ```bash
-curl -XPOST -i -d '{"name": "Luas Dominick Inbound", "config": {"type": "luas", "parameters": {"code": "DOM", "direction": "Inbound"}}}' "${PREFIX}/dashboard/d733b0b2-f429-4bdf-82ab-c9fc3b3190d7/widget"
+curl -XPOST -i -H "Content-Type: application/json" -d '{"name": "Luas Dominick Inbound", "config": {"type": "luas", "parameters": {"code": "DOM", "direction": "Inbound"}}}' "${PREFIX}/dashboard/d733b0b2-f429-4bdf-82ab-c9fc3b3190d7/widget"
 ```
 
 Example Output:
@@ -337,7 +337,7 @@ POST `/dashboard/{dashboard_id}/widget/{widget_id}`
 Changes the previous widget direction from Outbound to Inbound:
 
 ```bash
-curl -XPOST -i -d '{"name": "Luas Dominick Inbound", "config": {"type": "luas", "parameters": {"code": "DOM", "direction": "Outbound"}}}' "${PREFIX}/dashboard/d733b0b2-f429-4bdf-82ab-c9fc3b3190d7/widget/59b8a71b-d8c6-4569-9ec8-69c5ff0c7521"
+curl -XPOST -i -H "Content-Type: application/json" -d '{"name": "Luas Dominick Inbound", "config": {"type": "luas", "parameters": {"code": "DOM", "direction": "Outbound"}}}' "${PREFIX}/dashboard/d733b0b2-f429-4bdf-82ab-c9fc3b3190d7/widget/59b8a71b-d8c6-4569-9ec8-69c5ff0c7521"
 ```
 
 Example Output:
