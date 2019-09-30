@@ -1,6 +1,7 @@
 'use strict'
 
 const middy = require('@middy/core')
+const errorHandler = require('@middy/http-error-handler')
 
 module.exports = function factory (dynamoClient, tableName) {
   async function handler (event) {
@@ -58,5 +59,5 @@ module.exports = function factory (dynamoClient, tableName) {
     }
   }
 
-  return middy(handler)
+  return middy(handler).use(errorHandler())
 }

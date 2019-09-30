@@ -1,6 +1,7 @@
 'use strict'
 
 const middy = require('@middy/core')
+const errorHandler = require('@middy/http-error-handler')
 const jsonParser = require('@middy/http-json-body-parser')
 const uuid = require('uuid/v4')
 
@@ -49,5 +50,5 @@ module.exports = function factory (dynamoClient, tableName) {
     }
   }
 
-  return middy(handler).use(jsonParser())
+  return middy(handler).use(errorHandler()).use(jsonParser())
 }
