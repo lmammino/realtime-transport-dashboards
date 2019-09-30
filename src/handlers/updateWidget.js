@@ -3,6 +3,8 @@
 const middy = require('@middy/core')
 const errorHandler = require('@middy/http-error-handler')
 const jsonParser = require('@middy/http-json-body-parser')
+const validator = require('@middy/validator')
+const inputSchema = require('./schemas/addAndUpdateWidget')
 
 module.exports = function factory (dynamoClient, tableName) {
   async function handler (event) {
@@ -68,5 +70,10 @@ module.exports = function factory (dynamoClient, tableName) {
     }
   }
 
-  return middy(handler).use(errorHandler()).use(jsonParser())
+  return middy(handler)
+    .use(errorHandler())
+    .use(jsonParser())
+    .use(validator({
+      inputSchema
+    }))
 }
