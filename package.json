@@ -32,6 +32,7 @@
   },
   "dependencies": {
     "@middy/core": "^1.0.0-alpha.43",
+    "@middy/http-cors": "^1.0.0-alpha.43",
     "@middy/http-error-handler": "^1.0.0-alpha.43",
     "@middy/http-json-body-parser": "^1.0.0-alpha.43",
     "@middy/validator": "^1.0.0-alpha.43",
