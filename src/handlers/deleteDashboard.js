@@ -1,7 +1,9 @@
 'use strict'
 
+const middy = require('@middy/core')
+
 module.exports = function factory (dynamoClient, tableName) {
-  return async function deleteWidget (event) {
+  async function handler (event) {
     const dashboardId = event.pathParameters.dashboard_id
 
     const deleteQuery = {
@@ -19,4 +21,6 @@ module.exports = function factory (dynamoClient, tableName) {
       body: ''
     }
   }
+
+  return middy(handler)
 }

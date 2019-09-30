@@ -1,9 +1,10 @@
 'use strict'
 
+const middy = require('@middy/core')
 const uuid = require('uuid/v4')
 
 module.exports = function factory (dynamoClient, tableName) {
-  return async function addWidget (event) {
+  async function handler (event) {
     const dashboardId = event.pathParameters.dashboard_id
     const { Item: dashboard } = await dynamoClient.get({
       TableName: tableName,
@@ -46,4 +47,6 @@ module.exports = function factory (dynamoClient, tableName) {
       body: JSON.stringify(widgetRecord)
     }
   }
+
+  return middy(handler)
 }

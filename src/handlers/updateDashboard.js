@@ -1,7 +1,7 @@
 'use strict'
 
 module.exports = function factory (dynamoClient, tableName) {
-  return async function createDashboard (event) {
+  async function handler (event) {
     const dashboardConfig = event.body ? JSON.parse(event.body) : {}
     const dashboardId = event.pathParameters.dashboard_id
     const updatedAt = (new Date()).toISOString()
@@ -44,4 +44,6 @@ module.exports = function factory (dynamoClient, tableName) {
       body: JSON.stringify(resp.Attributes)
     }
   }
+
+  return middy(handler)
 }
