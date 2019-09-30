@@ -1,6 +1,7 @@
 'use strict'
 
 const middy = require('@middy/core')
+const jsonParser = require('@middy/http-json-body-parser')
 const uuid = require('uuid/v4')
 
 module.exports = function factory (dynamoClient, tableName) {
@@ -20,7 +21,7 @@ module.exports = function factory (dynamoClient, tableName) {
       }
     }
 
-    const widgetRecord = event.body ? JSON.parse(event.body) : {}
+    const widgetRecord = event.body
     widgetRecord.id = uuid()
     widgetRecord.name = widgetRecord.name ? widgetRecord.name : 'unnamed-widget'
 
@@ -48,5 +49,5 @@ module.exports = function factory (dynamoClient, tableName) {
     }
   }
 
-  return middy(handler)
+  return middy(handler).use(jsonParser())
 }

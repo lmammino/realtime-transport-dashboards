@@ -1,13 +1,14 @@
 'use strict'
 
 const middy = require('@middy/core')
+const jsonParser = require('@middy/http-json-body-parser')
 
 module.exports = function factory (dynamoClient, tableName) {
   async function handler (event) {
     const dashboardId = event.pathParameters.dashboard_id
     const widgetId = event.pathParameters.widget_id
 
-    const widgetConfig = event.body ? JSON.parse(event.body) : {}
+    const widgetConfig = event.body
 
     const updatedAt = (new Date()).toISOString()
 
@@ -66,5 +67,5 @@ module.exports = function factory (dynamoClient, tableName) {
     }
   }
 
-  return middy(handler)
+  return middy(handler).use(jsonParser())
 }
