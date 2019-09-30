@@ -51,6 +51,8 @@ functions:
           method: DELETE
   getDashboard:
     handler: src/handler.getDashboard
+    timeout: 20
+    memory: 2048
     events:
       - http:
           path: dashboard/{dashboard_id}
