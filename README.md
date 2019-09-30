@@ -236,7 +236,7 @@ content-length: 401
     }
   ],
   "id":"d733b0b2-f429-4bdf-82ab-c9fc3b3190d7",
-  "name":"new-name"
+  "name":"new-name",
   "updatedAt":"2019-09-28T16:43:05.570Z"
 }
 ```
