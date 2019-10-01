@@ -1,7 +1,7 @@
 'use strict'
 
 module.exports = function factory (dynamoClient, tableName) {
-  return async function deleteWidget (event) {
+  return async function deleteDashboard (event) {
     const dashboardId = event.pathParameters.dashboard_id
 
     const deleteQuery = {
