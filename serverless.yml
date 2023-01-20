@@ -4,7 +4,7 @@
 service: realtime-transport-dashboard
 
 # Serverless framework version
-frameworkVersion: "=1.53.0"
+frameworkVersion: "3"
 
 custom:
   stage: ${opt:stage, self:provider.stage}
@@ -12,9 +12,11 @@ custom:
 
 provider:
   name: aws
-  runtime: nodejs10.x
+  runtime: nodejs18.x
   stage: prod
   region: eu-west-1
+  httpApi:
+    cors: true
   environment:
     TABLE_NAME: ${self:custom.tableName}
   iamRoleStatements:
@@ -34,46 +36,46 @@ functions:
   createDashboard:
     handler: src/handler.createDashboard
     events:
-      - http:
-          path: dashboard
+      - httpApi:
+          path: /dashboard
           method: POST
   updateDashboard:
     handler: src/handler.updateDashboard
     events:
-      - http:
-          path: dashboard/{dashboard_id}
+      - httpApi:
+          path: /dashboard/{dashboard_id}
           method: POST
   deleteDashboard:
     handler: src/handler.deleteDashboard
     events:
-      - http:
-          path: dashboard/{dashboard_id}
+      - httpApi:
+          path: /dashboard/{dashboard_id}
           method: DELETE
   getDashboard:
     handler: src/handler.getDashboard
     timeout: 20
-    memory: 2048
+    memorySize: 2048
     events:
-      - http:
-          path: dashboard/{dashboard_id}
+      - httpApi:
+          path: /dashboard/{dashboard_id}
           method: GET
   addWidget:
     handler: src/handler.addWidget
     events:
-      - http:
-          path: dashboard/{dashboard_id}/widget
+      - httpApi:
+          path: /dashboard/{dashboard_id}/widget
           method: POST
   updateWidget:
     handler: src/handler.updateWidget
     events:
-      - http:
-          path: dashboard/{dashboard_id}/widget/{widget_id}
+      - httpApi:
+          path: /dashboard/{dashboard_id}/widget/{widget_id}
           method: POST
   deleteWidget:
     handler: src/handler.deleteWidget
     events:
-      - http:
-          path: dashboard/{dashboard_id}/widget/{widget_id}
+      - httpApi:
+          path: /dashboard/{dashboard_id}/widget/{widget_id}
           method: DELETE
 
 
